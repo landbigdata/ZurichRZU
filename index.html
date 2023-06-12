@@ -118,7 +118,7 @@ function zoomTo(arg) {
            		 });
 
 
-        var LandUse= L.tileLayer('map/LandUse/{z}/{x}/{y}.png', {
+        var ÖREB_NP= L.tileLayer('map/LandUse/{z}/{x}/{y}.png', {
           		minZoom: 5,
           		maxZoom: 18,
           		tms: false,
@@ -146,7 +146,7 @@ function zoomTo(arg) {
 	var map = L.map('map', {
 			center: [47.35, 8.54],
 			zoom: 12,
-			layers: [Google_basemap, Admin_02, Admin_01, LandUse]
+			layers: [Google_basemap, Admin_02, Admin_01, ÖREB_NP]
 	});
 
 	var base_Layers = {
@@ -156,7 +156,7 @@ function zoomTo(arg) {
 	};
 
 	var BLD_Layers = {
-		    	"LandUse": LandUse,
+		    	"ÖREB_NP": ÖREB_NP,
 			"Admin_02": Admin_02,
 			"Admin_01": Admin_01,
 			"POI_OSM": POI_OSM
