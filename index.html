@@ -1,0 +1,199 @@
+<html lang="en">
+<head>
+  <title>Zurich RZU</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+    body {
+       margin: 0;
+       padding: 0;
+    }
+    html, body, #map{
+       width: 100%;
+       height: 100%;
+    }
+    </style>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/leaflet.css">
+  <!--鹰眼控件样式-->
+  <link href="css/Control.MiniMap.css" rel="stylesheet" />
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src='js/mapbox.js'></script>
+  <script src="js/easy-button.js"></script>
+  <script src="js/leaflet.ajax.min.js"></script>
+  <script src="js/styles.js"></script>
+  <!--leaflet原生库+Zondy库-->
+  <script src="js/webclient-leaflet-framework.min.js"></script>
+  <!--鹰眼控件扩展库-->
+  <script src="js/Control.MiniMap.js"></script>
+
+</head>
+<body>
+    <div class="mapper no-padding">
+      <div id="map" class="map">
+      	<div id="download_icon"><a href="#" onClick="alert('Dear visitor,' + '\n' +
+							   '\n' + 'Thank you for your interest in this dataset!' + '\n' +
+							   '\n' + 'It will be available upon acceptance of our manuscript! For further information, please contact our team (mengmeng.li@wsl.ch).' + '\n' +
+                                                                                                                   '\n' + 'Swiss Federal Research Institute WSL' )";><img src="img/download_icon.png"></a></div>
+
+	<div id="homepage"><a href="https://landbigdata.github.io/cscproject/"><img src="img/homepage.png"></a></div>
+
+	<div id="revolvermaps"><img src="https://rf.revolvermaps.com/w/3/s/a/0/33/0/ffffff/010020/aa0000/5u0yvc9fwb5.png"></div>
+
+	    <div class="btn-group" style="z-index: 1001"> <!-- Use 401 to be between map and controls -->
+		</div>
+	  </div>
+      	<div id="logo"><img src="img/logo.png"></div>
+    </div>
+
+<script>
+function zoomTo(arg) {
+	if(arg == 'ex1') {
+		map.setView([47.369937, 8.540122], 11)
+	}
+	if(arg == 'ex2') {
+		map.setView([47.369937, 8.540122], 12)
+	}
+	if(arg == 'ex3') {
+		map.setView([47.369937, 8.540122], 11)
+	}
+	if(arg == 'ex4') {
+		map.setView([47.369937, 8.540122], 11)
+	}
+	if(arg == 'ex5') {
+		map.setView([47.369937, 8.540122], 11)
+	}
+	if(arg == 'ex6') {
+		map.setView([47.369937, 8.540122], 11)
+	}
+}
+</script>
+
+<div class='map-overlay-left' id="exmpl">
+        <div class='map-overlay-inner'>
+            <div><u>Zoom to examples:</u></br>
+				<img src="img/ex1.png" onClick="zoomTo('ex1')"><br>
+				<img src="img/ex2.png" onClick="zoomTo('ex2')"><br>		
+				<img src="img/ex3.png" onClick="zoomTo('ex3')"><br>
+				<img src="img/ex4.png" onClick="zoomTo('ex4')"><br>
+				<img src="img/ex5.png" onClick="zoomTo('ex5')"><br>
+				<img src="img/ex6.png" onClick="zoomTo('ex6')"><br>
+            </div>
+        </div>
+    </div>
+  <div id="showExamples">
+        Examples
+    </div>
+
+    <div id="legend"></div>
+    <div id="showLegend">
+        Legend
+    </div>
+
+
+
+<script>
+        var dark_basemap= L.tileLayer('https://tile.jawg.io/jawg-dark/{z}/{x}/{y}.png?access-token=husKPovN2ju7MHnvcylZj55yt4MlLylmlIqugjh6M4i46rQzm9aJpLjxlnIvSadp', {
+	    	minZoom: 5,
+            		maxZoom: 18,
+            		tms: false,
+          		attribution: 'OpenStreetMap'
+			});
+
+       var bright_basemap = L.tileLayer('https://tile.jawg.io/jawg-light/{z}/{x}/{y}.png?access-token=husKPovN2ju7MHnvcylZj55yt4MlLylmlIqugjh6M4i46rQzm9aJpLjxlnIvSadp', {
+		minZoom: 5,
+          		maxZoom: 18,
+          		tms: false,
+          		attribution: 'OpenStreetMap'
+			});
+
+
+        var Google_basemap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            		 minZoom: 5,
+          		maxZoom: 18,
+          		tms: false,
+          		attribution: '@Google'
+           		 });
+
+
+        var LandUse= L.tileLayer('map/LandUse/{z}/{x}/{y}.png', {
+          		minZoom: 5,
+          		maxZoom: 18,
+          		tms: false,
+          		attribution: '@Mengmeng Li'
+        		});
+        var Admin_02= L.tileLayer('map/Admin_02/{z}/{x}/{y}.png', {
+          		minZoom: 5,
+          		maxZoom: 18,
+          		tms: false,
+          		attribution: '@Mengmeng Li'
+        		});
+        var Admin_01= L.tileLayer('map/Admin_01/{z}/{x}/{y}.png', {
+          		minZoom: 5,
+          		maxZoom: 18,
+          		tms: false,
+          		attribution: '@Mengmeng Li'
+        		});
+ 
+	var map = L.map('map', {
+			center: [47.369937, 8.540122],
+			zoom: 12,
+			layers: [Google_basemap, Admin_02, Admin_01, LandUse]
+	});
+
+	var base_Layers = {
+			"Dark basemap": dark_basemap,
+			"Bright basemap": bright_basemap,
+			"Google_basemap": Google_basemap 
+	};
+
+	var BLD_Layers = {
+		    	"LandUse": LandUse,
+			"Admin_02": Admin_02,
+			"Admin_01": Admin_01
+	};
+	
+
+	L.control.layers(base_Layers, BLD_Layers, {
+			collapsed: false,
+			position: 'bottomright'}).addTo(map);
+
+
+       //Add eagle eye
+	var OSM_Map = new L.TileLayer('https://a.tile.openstreetmap.de/{z}/{x}/{y}.png', {
+                minZoom: 0,
+                maxZoom: 6,
+            });
+
+        var miniMap = new L.Control.MiniMap(OSM_Map, {
+                //Display eagle eye or not
+                toggleDisplay: true,
+		position: 'bottomleft'
+            }).addTo(map);
+
+ 	var img = document.createElement("img");
+	img.src = "img/legend.png";
+	var src = document.getElementById("x");
+	legend.appendChild(img);
+
+	var closeButton = document.createElement('div');
+	closeButton.className = 'cB';
+	legend.appendChild(closeButton);
+	closeButton.onclick = function() {
+	document.getElementById("legend").style.visibility = 'hidden';
+	document.getElementById("showLegend").style.visibility = 'visible';
+ 	}
+
+	document.getElementById("showLegend").onclick = function() {
+	document.getElementById("legend").style.visibility = 'visible';
+	document.getElementById("showLegend").style.visibility = 'hidden';
+	}
+  </script>
+</body>
+</html>
