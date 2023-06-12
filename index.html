@@ -55,19 +55,20 @@
 <script>
 function zoomTo(arg) {
 	if(arg == 'ex1') {
-		map.setView([47.369937, 8.540122], 11)
+		map.setView([47.35, 8.54], 13)
 	}
 	if(arg == 'ex2') {
-		map.setView([47.369937, 8.540122], 11)
+		map.setView([47.35, 8.54], 13)
 	}
 	if(arg == 'ex3') {
-		map.setView([47.369937, 8.540122], 11)
+		map.setView([47.35, 8.54], 13)
 	}
 	if(arg == 'ex4') {
-		map.setView([47.369937, 8.540122], 11)
+		map.setView([47.35, 8.54], 13)
 	}
 	if(arg == 'ex5') {
-		map.setView([47.369937, 8.540122], 11)
+		map.setView([47.35, 8.54], 13)
+	}
 }
 </script>
 
@@ -78,6 +79,7 @@ function zoomTo(arg) {
 				<img src="img/ex2.png" onClick="zoomTo('ex2')"><br>		
 				<img src="img/ex3.png" onClick="zoomTo('ex3')"><br>
 				<img src="img/ex4.png" onClick="zoomTo('ex4')"><br>
+				<img src="img/ex5.png" onClick="zoomTo('ex5')"><br>
 				<img src="img/ex5.png" onClick="zoomTo('ex5')"><br>
             </div>
         </div>
@@ -137,7 +139,7 @@ function zoomTo(arg) {
         		});
  
 	var map = L.map('map', {
-			center: [47.369937, 8.540122],
+			center: [47.35, 8.54],
 			zoom: 12,
 			layers: [Google_basemap, Admin_02, Admin_01, LandUse]
 	});
