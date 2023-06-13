@@ -130,6 +130,12 @@ function zoomTo(arg) {
           		tms: false,
           		attribution: '@OSM'
         		});
+        var LandUse_OSM= L.tileLayer('map/LandUse_OSM/{z}/{x}/{y}.png', {
+          		minZoom: 5,
+          		maxZoom: 18,
+          		tms: false,
+          		attribution: '@OSM'
+        		});
         var Admin_02= L.tileLayer('map/Admin_02/{z}/{x}/{y}.png', {
           		minZoom: 5,
           		maxZoom: 18,
@@ -159,7 +165,8 @@ function zoomTo(arg) {
 		    	"ÖREB_NP": ÖREB_NP,
 			"Admin_02": Admin_02,
 			"Admin_01": Admin_01,
-			"POI_OSM": POI_OSM
+			"POI_OSM": POI_OSM,
+			"LU_OSM": LandUse_OSM
 	};
 	
 
