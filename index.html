@@ -136,6 +136,18 @@ function zoomTo(arg) {
           		tms: false,
           		attribution: '@OSM'
         		});
+        var UA_2018 = L.tileLayer('map/UA_2018/{z}/{x}/{y}.png', {
+          		minZoom: 5,
+          		maxZoom: 18,
+          		tms: false,
+          		attribution: '@OSM'
+        		});
+        var UA_2012= L.tileLayer('map/UA_2012/{z}/{x}/{y}.png', {
+          		minZoom: 5,
+          		maxZoom: 18,
+          		tms: false,
+          		attribution: '@OSM'
+        		});
         var Admin_02= L.tileLayer('map/Admin_02/{z}/{x}/{y}.png', {
           		minZoom: 5,
           		maxZoom: 18,
@@ -166,7 +178,9 @@ function zoomTo(arg) {
 			"Admin_02": Admin_02,
 			"Admin_01": Admin_01,
 			"POI_OSM": POI_OSM,
-			"LU_OSM": LandUse_OSM
+			"LU_OSM": LandUse_OSM,
+			"UA_2018": UA_2018,
+			"UA_2012": UA_2012
 	};
 	
 
